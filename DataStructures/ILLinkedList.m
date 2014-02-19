@@ -92,14 +92,7 @@
 {
     ILNode *newNode = [[ILNode alloc] initWithObject:object];
     
-    NSUInteger currentIndex = 0;
-    ILNode *previousNode = self.first;
-    
-    // get the previous node
-    while (previousNode.next && currentIndex < index - 1) {
-        previousNode = previousNode.next;
-        currentIndex++;
-    }
+    ILNode *previousNode = [self previousNodeAtIndex:index];
     
     ILNode *nextNode = previousNode.next;
     
@@ -138,13 +131,7 @@
         return [self removeFirstObject];
     }
     
-    ILNode *previosNodeToRemove = self.first;
-    NSUInteger currentIndex = 0;
-    
-    while(previosNodeToRemove.next && currentIndex < index - 1) {
-        previosNodeToRemove = previosNodeToRemove.next;
-        currentIndex++;
-    }
+    ILNode *previosNodeToRemove = [self previousNodeAtIndex:index];
     
     ILNode *nodeToRemove = previosNodeToRemove.next;
     previosNodeToRemove.next = nodeToRemove.next;
@@ -152,11 +139,35 @@
     return nodeToRemove.object;
 }
 
-#pragma mark - helpers
+#pragma mark - object accessors
 
 -(BOOL)isEmpty
 {
     return self.first == nil;
+}
+
+#pragma mark - helpers
+
+-(ILNode *)previousNodeAtIndex:(NSUInteger)index
+{
+    if (index <= 0) {
+        return self.first;
+    }
+    
+    ILNode *previosNode = self.first;
+    NSUInteger currentIndex = 0;
+    
+    while(previosNode.next && currentIndex < index - 1) {
+        previosNode = previosNode.next;
+        currentIndex++;
+    }
+    
+    return previosNode;
+}
+
+-(ILNode *)nodeAtIndex:(NSUInteger)index
+{
+    return [self previousNodeAtIndex:index].next;
 }
 
 @end
