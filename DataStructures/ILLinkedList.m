@@ -146,6 +146,21 @@
     return self.first == nil;
 }
 
+-(id)firstObject
+{
+    return self.first.object;
+}
+
+-(id)lastObject
+{
+    return self.last.object;
+}
+
+-(id)objectAtIndex:(NSUInteger)index
+{
+    return [self nodeAtIndex:index].object;
+}
+
 #pragma mark - helpers
 
 -(ILNode *)previousNodeAtIndex:(NSUInteger)index

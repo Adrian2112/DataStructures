@@ -57,4 +57,5 @@ void linkedListTest()
     [ll removeLastObject];
     
     NSLog(@"%@", ll);
+    NSLog(@"first object: %@, last object: %@, object at 3: %@", [ll firstObject], [ll lastObject], [ll objectAtIndex:3]);
 }

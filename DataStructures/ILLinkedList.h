@@ -18,4 +18,9 @@
 -(id)removeFirstObject;
 -(id)removeObjectAtIndex:(NSUInteger)index;
 
+-(BOOL)isEmpty;
+-(id)firstObject;
+-(id)lastObject;
+-(id)objectAtIndex:(NSUInteger)index;
+
 @end
