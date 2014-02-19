@@ -14,4 +14,8 @@
 -(void)prependObject:(id)object;
 -(void)insertObject:(id)object atIndex:(NSUInteger)index;
 
+-(id)removeLastObject;
+-(id)removeFirstObject;
+-(id)removeObjectAtIndex:(NSUInteger)index;
+
 @end

@@ -65,6 +65,8 @@
     return [description copy];
 }
 
+#pragma mark - insert object
+
 -(void)appendObject:(id)object
 {
     ILNode *node = [[ILNode alloc] initWithObject:object];
@@ -104,6 +106,53 @@
     newNode.next = nextNode;
     previousNode.next = newNode;
 }
+
+#pragma mark - remove objects
+
+-(id)removeFirstObject
+{
+    ILNode *firstNode = self.first;
+    self.first = firstNode.next;
+    
+    return firstNode.object;
+}
+
+-(id)removeLastObject
+{
+    ILNode *lastNode = self.last;
+    
+    ILNode *newLastNode = self.first;
+    while (newLastNode.next != lastNode) {
+        newLastNode = newLastNode.next;
+    }
+    
+    self.last = newLastNode;
+    newLastNode.next = nil;
+    
+    return lastNode.object;
+}
+
+-(id)removeObjectAtIndex:(NSUInteger)index
+{
+    if (index == 0) {
+        return [self removeFirstObject];
+    }
+    
+    ILNode *previosNodeToRemove = self.first;
+    NSUInteger currentIndex = 0;
+    
+    while(previosNodeToRemove.next && currentIndex < index - 1) {
+        previosNodeToRemove = previosNodeToRemove.next;
+        currentIndex++;
+    }
+    
+    ILNode *nodeToRemove = previosNodeToRemove.next;
+    previosNodeToRemove.next = nodeToRemove.next;
+    
+    return nodeToRemove.object;
+}
+
+#pragma mark - helpers
 
 -(BOOL)isEmpty
 {

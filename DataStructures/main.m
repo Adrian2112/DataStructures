@@ -52,4 +52,9 @@ void linkedListTest()
     
     NSLog(@"%@", ll);
     
+    [ll removeObjectAtIndex:3];
+    [ll removeFirstObject];
+    [ll removeLastObject];
+    
+    NSLog(@"%@", ll);
 }
