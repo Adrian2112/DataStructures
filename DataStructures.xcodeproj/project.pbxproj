@@ -11,6 +11,7 @@
 		3AD772E518B51FDC009590AE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD772E418B51FDC009590AE /* main.m */; };
 		3AD772E918B51FDC009590AE /* DataStructures.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3AD772E818B51FDC009590AE /* DataStructures.1 */; };
 		3AD772F118B52029009590AE /* ILDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD772F018B52029009590AE /* ILDictionary.m */; };
+		3AD772F418B53A84009590AE /* ILLinkedList.m in Sources */ = {isa = PBXBuildFile; fileRef = 3AD772F318B53A84009590AE /* ILLinkedList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -34,6 +35,8 @@
 		3AD772E818B51FDC009590AE /* DataStructures.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = DataStructures.1; sourceTree = "<group>"; };
 		3AD772EF18B52029009590AE /* ILDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILDictionary.h; sourceTree = "<group>"; };
 		3AD772F018B52029009590AE /* ILDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILDictionary.m; sourceTree = "<group>"; };
+		3AD772F218B53A84009590AE /* ILLinkedList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ILLinkedList.h; sourceTree = "<group>"; };
+		3AD772F318B53A84009590AE /* ILLinkedList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ILLinkedList.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				3AD772E418B51FDC009590AE /* main.m */,
+				3AD772F218B53A84009590AE /* ILLinkedList.h */,
+				3AD772F318B53A84009590AE /* ILLinkedList.m */,
 				3AD772E818B51FDC009590AE /* DataStructures.1 */,
 				3AD772E618B51FDC009590AE /* Supporting Files */,
 				3AD772EF18B52029009590AE /* ILDictionary.h */,
@@ -144,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3AD772F418B53A84009590AE /* ILLinkedList.m in Sources */,
 				3AD772F118B52029009590AE /* ILDictionary.m in Sources */,
 				3AD772E518B51FDC009590AE /* main.m in Sources */,
 			);
