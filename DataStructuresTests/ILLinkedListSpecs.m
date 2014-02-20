@@ -70,7 +70,7 @@ describe(@"ILLinkedList", ^{
             context(@"at index > length", ^{
                 it(@"raise an 'Invalid index' error", ^{
                     expect(^{
-                        [linkedList insertObject:object atIndex:4];
+                        [linkedList insertObject:object atIndex:[linkedList length]+1];
                     }).to.raise(@"Invalid index");
                 });
             });
@@ -89,6 +89,121 @@ describe(@"ILLinkedList", ^{
                 });
             });
             
+        });
+        
+    });
+    
+    describe(@"-removeObjectAtIndex:", ^{
+        context(@"with empty list", ^{
+            it(@"raise an 'Invalid index' error", ^{
+                expect(^{
+                    [linkedList removeObjectAtIndex:3];
+                }).to.raise(@"Invalid index");
+            });
+        });
+        
+        context(@"list with objects", ^{
+            __block NSString *firstObject = @"firstObject";
+            __block NSString *secondObject = @"secondObject";
+            __block NSString *thirdObject = @"thirdObject";
+            beforeEach(^{
+                [linkedList appendObject:firstObject];
+                [linkedList appendObject:secondObject];
+                [linkedList appendObject:thirdObject];
+            });
+
+            context(@"at index >= length", ^{
+                it(@"raise an 'Invalid index' error", ^{
+                    expect(^{
+                        [linkedList removeObjectAtIndex:[linkedList length]];
+                    }).to.raise(@"Invalid index");
+                });
+            });
+
+            context(@"at index < length", ^{
+                __block id removedObject;
+                beforeEach(^{
+                    removedObject = [linkedList removeObjectAtIndex:1];
+                });
+                
+                it(@"should return the removed object", ^{
+                    expect(removedObject).to.equal(secondObject);
+                });
+                
+                it(@"should substract one to length", ^{
+                    expect([linkedList length]).to.equal(2);
+                });
+            });
+            
+        });
+        
+    });
+    
+    
+    describe(@"-removeFirstObject:", ^{
+        context(@"with empty list", ^{
+            it(@"raise an 'Invalid index' error", ^{
+                expect(^{
+                    [linkedList removeObjectAtIndex:1];
+                }).to.raise(@"Invalid index");
+            });
+        });
+        
+        context(@"list with objects", ^{
+            __block NSString *firstObject = @"firstObject";
+            __block NSString *secondObject = @"secondObject";
+            __block NSString *thirdObject = @"thirdObject";
+            
+            __block id removedObject;
+            beforeEach(^{
+                [linkedList appendObject:firstObject];
+                [linkedList appendObject:secondObject];
+                [linkedList appendObject:thirdObject];
+                
+                removedObject = [linkedList removeFirstObject];
+            });
+
+            it(@"should return the removed object", ^{
+                expect(removedObject).to.equal(firstObject);
+            });
+            
+            it(@"should substract one to length", ^{
+                expect([linkedList length]).to.equal(2);
+            });
+        });
+        
+    });
+    
+    describe(@"-removeLastObject:", ^{
+        context(@"with empty list", ^{
+            it(@"raise an 'Invalid index' error", ^{
+                expect(^{
+                    [linkedList removeObjectAtIndex:1];
+                }).to.raise(@"Invalid index");
+            });
+        });
+        
+        context(@"list with objects", ^{
+            __block NSString *firstObject = @"firstObject";
+            __block NSString *secondObject = @"secondObject";
+            __block NSString *thirdObject = @"thirdObject";
+            
+            __block id removedObject;
+            beforeEach(^{
+                [linkedList appendObject:firstObject];
+                [linkedList appendObject:secondObject];
+                [linkedList appendObject:thirdObject];
+                
+                removedObject = [linkedList removeLastObject];
+            });
+
+            it(@"should return the removed object", ^{
+                expect(removedObject).to.equal(thirdObject);
+            });
+            
+            it(@"should substract one to length", ^{
+                expect([linkedList length]).to.equal(2);
+            });
         });
         
     });

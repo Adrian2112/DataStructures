@@ -116,14 +116,17 @@
 
 -(id)removeFirstObject
 {
+    [self validateRemoveAtIndex:0];
     ILNode *firstNode = self.first;
     self.first = firstNode.next;
-    
+    self.length--;
     return firstNode.object;
 }
 
 -(id)removeLastObject
 {
+    [self validateRemoveAtIndex:self.length-1];
+    
     ILNode *lastNode = self.last;
     
     ILNode *newLastNode = self.first;
@@ -134,11 +137,14 @@
     self.last = newLastNode;
     newLastNode.next = nil;
     
+    self.length--;
     return lastNode.object;
 }
 
 -(id)removeObjectAtIndex:(NSUInteger)index
 {
+    [self validateRemoveAtIndex:index];
+    
     if (index == 0) {
         return [self removeFirstObject];
     }
@@ -147,6 +153,7 @@
     
     ILNode *nodeToRemove = previosNodeToRemove.next;
     previosNodeToRemove.next = nodeToRemove.next;
+    self.length--;
     
     return nodeToRemove.object;
 }
@@ -207,6 +214,17 @@
         [NSException raise:@"Invalid index" format:@"Trying to insert object at index %lu in a list with %lu elements", (unsigned long)index, (unsigned long)self.length];
     }
     
+}
+
+-(void)validateRemoveAtIndex:(NSUInteger)index
+{
+    if ([self isEmpty]) {
+        [NSException raise:@"Invalid index" format:@"Trying to remove object at index %lu in an empty list", (unsigned long)index];
+    }
+    
+    if (index >= self.length) {
+        [NSException raise:@"Invalid index" format:@"Trying to remove object at index %lu in a list with %lu elements", (unsigned long)index, (unsigned long)self.length];
+    }
 }
 
 @end
