@@ -180,6 +180,11 @@
     return [self nodeAtIndex:index].object;
 }
 
+-(id)objectAtIndexedSubscript:(NSUInteger)idx
+{
+    return [self objectAtIndex:idx];
+}
+
 -(BOOL)includeObject:(id)object
 {
     ILNode *currentNode = [[ILNode alloc] init];

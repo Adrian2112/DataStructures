@@ -22,6 +22,7 @@
 -(BOOL)isEmpty;
 -(id)firstObject;
 -(id)lastObject;
+-(id)objectAtIndexedSubscript:(NSUInteger)idx;
 -(id)objectAtIndex:(NSUInteger)index;
 -(BOOL)includeObject:(id)object;
 
