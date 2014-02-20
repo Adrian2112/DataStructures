@@ -133,6 +133,10 @@ describe(@"ILLinkedList", ^{
                 it(@"should substract one to length", ^{
                     expect([linkedList length]).to.equal(2);
                 });
+                
+                it(@"should not have removed object", ^{
+                    expect([linkedList includeObject:removedObject]).to.beFalsy;
+                });
             });
             
         });
@@ -170,6 +174,10 @@ describe(@"ILLinkedList", ^{
             it(@"should substract one to length", ^{
                 expect([linkedList length]).to.equal(2);
             });
+            
+            it(@"should not have removed object", ^{
+                expect([linkedList includeObject:removedObject]).to.beFalsy;
+            });
         });
         
     });
@@ -203,6 +211,10 @@ describe(@"ILLinkedList", ^{
             
             it(@"should substract one to length", ^{
                 expect([linkedList length]).to.equal(2);
+            });
+            
+            it(@"should not have removed object", ^{
+                expect([linkedList includeObject:removedObject]).to.beFalsy;
             });
         });
         
