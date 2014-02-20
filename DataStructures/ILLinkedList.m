@@ -36,6 +36,7 @@
 @interface ILLinkedList ()
 @property (strong, nonatomic) ILNode *first;
 @property (strong, nonatomic) ILNode *last;
+@property (assign, nonatomic) NSUInteger length;
 @end
 
 @implementation ILLinkedList
@@ -46,6 +47,7 @@
     if (self) {
         self.first = nil;
         self.last = nil;
+        self.length = 0;
     }
     return self;
 }
@@ -79,6 +81,8 @@
         self.last.next = node;
         self.last = node;
     }
+    
+    self.length++;
 }
 
 -(void)prependObject:(id)object
@@ -86,6 +90,7 @@
     ILNode *node = [[ILNode alloc] initWithObject:object];
     node.next = self.first;
     self.first = node;
+    self.length++;
 }
 
 -(void)insertObject:(id)object atIndex:(NSUInteger)index
@@ -98,6 +103,7 @@
     
     newNode.next = nextNode;
     previousNode.next = newNode;
+    self.length++;
 }
 
 #pragma mark - remove objects
