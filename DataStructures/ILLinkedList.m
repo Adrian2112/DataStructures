@@ -71,31 +71,38 @@
 
 -(void)appendObject:(id)object
 {
-    ILNode *node = [[ILNode alloc] initWithObject:object];
-    node.next = nil;
-    
-    // if list is empty
-    if ([self isEmpty]) {
-        self.first = self.last = node;
-    } else {
-        self.last.next = node;
-        self.last = node;
-    }
-    
-    self.length++;
+    [self insertObject:object atIndex:self.length];
 }
 
 -(void)prependObject:(id)object
 {
-    ILNode *node = [[ILNode alloc] initWithObject:object];
-    node.next = self.first;
-    self.first = node;
-    self.length++;
+    [self insertObject:object atIndex:0];
 }
 
 -(void)insertObject:(id)object atIndex:(NSUInteger)index
 {
     ILNode *newNode = [[ILNode alloc] initWithObject:object];
+    
+    [self validateInsertionAtIndex:index];
+    
+    self.length++;
+    
+    // if list is empty
+    if ([self isEmpty]) {
+        self.first = self.last = newNode;
+        return;
+    }
+    
+    // insert at beginning
+    if (index == 0) {
+        newNode.next = self.first;
+        self.first = newNode;
+        return;
+    }
+    // insert at last
+    else if (index == self.length-1) {
+        self.last = newNode;
+    }
     
     ILNode *previousNode = [self previousNodeAtIndex:index];
     
@@ -103,7 +110,6 @@
     
     newNode.next = nextNode;
     previousNode.next = newNode;
-    self.length++;
 }
 
 #pragma mark - remove objects
@@ -189,6 +195,18 @@
 -(ILNode *)nodeAtIndex:(NSUInteger)index
 {
     return [self previousNodeAtIndex:index].next;
+}
+
+-(void)validateInsertionAtIndex:(NSUInteger)index
+{
+    if ([self isEmpty] && index > 0) {
+        [NSException raise:@"Invalid index" format:@"Trying to insert object at index %lu in an empty list", (unsigned long)index];
+    }
+    
+    if (index > self.length) {
+        [NSException raise:@"Invalid index" format:@"Trying to insert object at index %lu in a list with %lu elements", (unsigned long)index, (unsigned long)self.length];
+    }
+    
 }
 
 @end
