@@ -208,6 +208,29 @@ describe(@"ILLinkedList", ^{
         
     });
     
+    describe(@"-includeObject:", ^{
+        __block NSString *firstObject = @"firstObject";
+        __block NSString *secondObject = @"secondObject";
+        __block NSString *notIncludedObject = @"thirdObject";
+        
+        beforeEach(^{
+            [linkedList appendObject:firstObject];
+            [linkedList appendObject:secondObject];
+        });
+        
+        context(@"it has the object", ^{
+            it(@"should return YES", ^{
+                expect([linkedList includeObject:firstObject]).to.beFalsy;
+            });
+        });
+        
+        context(@"it does not have the object", ^{
+            it(@"should return NO", ^{
+                expect([linkedList includeObject:notIncludedObject]).to.beFalsy;
+            });
+        });
+    });
+    
 });
 
 SpecEnd

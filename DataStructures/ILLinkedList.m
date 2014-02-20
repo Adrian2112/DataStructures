@@ -180,6 +180,20 @@
     return [self nodeAtIndex:index].object;
 }
 
+-(BOOL)includeObject:(id)object
+{
+    ILNode *currentNode = [[ILNode alloc] init];
+    currentNode.next = self.first;
+    
+    while ((currentNode = currentNode.next)) {
+        if ([currentNode.object isEqualTo:object]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 #pragma mark - helpers
 
 -(ILNode *)previousNodeAtIndex:(NSUInteger)index

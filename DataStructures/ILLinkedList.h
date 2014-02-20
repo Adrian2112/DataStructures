@@ -23,5 +23,6 @@
 -(id)firstObject;
 -(id)lastObject;
 -(id)objectAtIndex:(NSUInteger)index;
+-(BOOL)includeObject:(id)object;
 
 @end
