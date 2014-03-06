@@ -116,29 +116,12 @@
 
 -(id)removeFirstObject
 {
-    [self validateRemoveAtIndex:0];
-    ILNode *firstNode = self.first;
-    self.first = firstNode.next;
-    self.length--;
-    return firstNode.object;
+    return [self removeObjectAtIndex:0];
 }
 
 -(id)removeLastObject
 {
-    [self validateRemoveAtIndex:self.length-1];
-    
-    ILNode *lastNode = self.last;
-    
-    ILNode *newLastNode = self.first;
-    while (newLastNode.next != lastNode) {
-        newLastNode = newLastNode.next;
-    }
-    
-    self.last = newLastNode;
-    newLastNode.next = nil;
-    
-    self.length--;
-    return lastNode.object;
+    return [self removeObjectAtIndex:self.length-1];
 }
 
 -(id)removeObjectAtIndex:(NSUInteger)index
@@ -146,7 +129,10 @@
     [self validateRemoveAtIndex:index];
     
     if (index == 0) {
-        return [self removeFirstObject];
+        ILNode *firstNode = self.first;
+        self.first = firstNode.next;
+        self.length--;
+        return firstNode.object;
     }
     
     ILNode *previosNodeToRemove = [self previousNodeAtIndex:index];
